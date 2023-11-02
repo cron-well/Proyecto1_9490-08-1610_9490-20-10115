@@ -1,0 +1,115 @@
+<%- include ../partials/header %> <%- include ../partials/categories-navbar %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-12 m-auto">
+      <h1 class="mt-4 mb-4 text-center">Contactanos</h1>
+      <!-- Flash message -->
+      <% if (successMsg != null && successMsg) { %>
+        <div id="success" class="alert alert-success">
+          <%= successMsg %>
+        </div>
+        <% } %>
+    </div>
+    <div class="col-lg-8 col-md-12 text-justify m-auto">
+      <!-- Introduction -->
+    <div class="mt-4 mb-4">
+      <p>¡Siempre puedes contactarnos en cualquier momento! No dude en enviarnos un correo electrónico o llamarnos utilizando nuestros datos de contacto a continuación.<br />
+        También puedes visitarnos o llamarnos en cualquier momento durante nuestro horario laboral desde<i>Domingo a jueves: 9 a 12 h.</i> <br />
+        Respondemos a nuestros correos electrónicos incluso durante los fines de semana. Así que no dude en contactarnos.
+      </p>
+    </div>
+      <!-- Email contacts -->
+      <div class="mt-4 mb-4">
+        <p>
+          <h6><i>Contáctenos por correo electrónico:</i></h6>
+        </p>
+        <p>
+          Para consultas generales:
+          <a href="mailto:general@email.com">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <u>general@email.com</u>
+          </a>
+        </p>
+        <p>
+          Para problemas con pedidos:
+          <a href="mailto:orders@email.com">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <u>orders@email.com</u>
+          </a>
+        </p>
+        <p>
+          Para soporte técnico:
+          <a href="mailto:support@email.com">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <u>support@email.com</u>
+          </a>
+        </p>
+      </div>
+      <!-- Phone contacts -->
+      <div class="mt-4 mb-4">
+        <p>
+          <h6><i>Contáctanos por teléfono:</i></h6>
+        </p>
+        <p>
+          Teléfono del centro de llamadas 1:
+          <a href="tel:+502-5555-5555">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            +502-5555-5555
+           </a>
+        </p>
+        <p>
+          Teléfono del centro de llamadas 2:
+          <a href="tel:+502-4444-4444">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            555-555-5555
+           </a>
+        </p>
+        <p>
+          Teléfono whatsapp:
+          <a href="tel:+502-3333-3333">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            +502-3333-3333
+           </a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Contact us form -->
+    <div class="col-lg-8 col-md-12 m-auto">
+      <div class="mt-5 mb-4">
+        <h2>Formulario de contacto</h2>
+        <!-- Error flash message -->
+        <% if(errorMsg!=null && errorMsg.length>0) {%>
+          <div id="flash-msg" class="alert alert-danger">
+            <% errorMsg.forEach((message) => { %>
+            <p>
+              <%=message %>
+            </p>
+            <%}) %>
+          </div>
+          <%}%>
+        <form action="/pages/contact-us" method="POST">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="name" class="form-control" name="name" id="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Dirección de correo</label>
+            <input type="email" class="form-control" name="email" id="email" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Mensaje</label>
+            <textarea class="form-control" name="message" id="message" rows="5" placeholder="Por favor escribe tu mensaje aquí..." required></textarea>
+          </div>
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+          <button type="submit" class="btn btn-primary button-style">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include ../partials/footer %>
